@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forecast</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <form method="post" action="/add-forecast">
+    {% csrf_token %}
+    <h4>Provide Forecast Information per campaign</h4>
+    <!-- <div class="input-group input-group-sm mb-3"><span class="input-group-text">Date</span>
+      <p></p> <input name="Date" fromdata="T" id="Date" type="date" min="2018-03" value="2023-05" class="form-control">
+    </div>
+    <div class="input-group input-group-sm mb-3"><span class="input-group-text">Total working days</span>
+      <p></p> <input name="Total working days" fromdata="T" id="Totalworkdays" placeholder="26" value="26" max="31"
+        type="number" min="0" class="form-control">
+    </div> -->
+    <div class="container">
+      <br>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Enter Details</h3>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-4">
+          {{ collectorForm.created_on }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Total Working Days</label>
+        <div class="col-sm-4">
+          {{ collectorForm.working_days }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div>
+          {% for _ in campaigns %}
+          {{ campaignForm.allocated_calls}}
+        </div>
+        <label class="col-sm-2 col-form-label">Total Working Days</label>
+        <div class="col-sm-4">
+          {{ collectorForm.working_days }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="input-group input-group-sm mb-3"><span class="input-group-text">REPETEURS</span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="REPETEURS" placeholder="5000" type="number"
+              min="0" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3"><span
+              class="input-group-text">ETIHOPIAN_INACTIVE_M+1</span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="M+1<" placeholder="5000" type="number"
+              min="0" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3"><span
+              class="input-group-text">CANAL+_ETIHOPIAN_IN_WELCOME</span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="7" placeholder="5000" min="0"
+              type="number" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3"><span
+              class="input-group-text">CANAL+_ETIHOPIAN_IN_RET_PREV
+            </span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="8" placeholder="5000" min="0"
+              type="number" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3"><span
+              class="input-group-text">CANAL+_ETIHOPIAN_IN_INACTIVE
+            </span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="9" placeholder="5000" min="0"
+              type="number" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3"><span class="input-group-text">CANAL+_ETIHOPIAN_IN
+            </span>
+            <p></p> <input onchange="findTotal()" name="num" fromdata="T" id="10" placeholder="5000" type="number"
+              min="0" class="form-control">
+          </div> -->
+  </form>
+</body>
+
+<script type="text/javascript">
+  function findTotal() {
+    var arr = document.getElementsByName('num');
+    var tot = 0;
+    for (var i = 0; i < arr.length; i++) {
+      if (parseInt(arr[i].value))
+        tot += parseInt(arr[i].value);
+    }
+    document.getElementById('total').textContent = tot;
+  }
+
+</script>
+
+</html>

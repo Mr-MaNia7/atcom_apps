@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Per Campaign</title>
+</head>
+
+<body>
+  <form action="/create-per-campaign" method="post">
+    {% csrf_token %}
+    <div class="container">
+      <br>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <h3>Enter Details</h3>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Month</label>
+        <div class="col-sm-4">
+          <input type="month" name="month_year" id="month_year">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Working Days</label>
+        <div class="col-sm-4">
+          <input type="number" name="working_days" id="working_days">
+        </div>
+      </div>
+      {% for c in campaigns %}
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">{{c.name}}</label>
+        <input type="number" name="camp_id_{{c.id}}" id="camp_id_{{c.id}}" value={{c.id}} hidden>
+        <div class="col-sm-4">
+          <input type="number" name="calls" id="calls">
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>
